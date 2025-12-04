@@ -15,7 +15,23 @@ from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 import torch
 import torch.utils.data
 import torchvision
-from decord import cpu, VideoReader
+try:
+    from decord import cpu, VideoReader
+except ImportError:
+    # 如果没有安装 decord，我们就伪造一个，防止报错
+    # 只要你不运行训练代码，这完全没问题
+    print("Warning: 'decord' not found. Using dummy mock for Mac inference.")
+
+    class VideoReader:
+        def __init__(self, path, ctx=None):
+            pass
+        def __len__(self):
+            return 0
+        def get_batch(self, indices):
+            return []
+
+    def cpu(device_id=0):
+        return "cpu"
 from iopath.common.file_io import g_pathmgr
 
 from PIL import Image as PILImage
