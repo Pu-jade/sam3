@@ -1,4 +1,11 @@
-# SAM 3: Segment Anything with Concepts
+# SAM 3: Segment Anything with Concepts for MPS
+
+## This repo is trying to make SAM3 model working on mps (apple silicon gpus). Currently the image with prompt interfacing is working. Please use the file sam3_image_predictor_example.ipynb.
+
+It has been tested on a M4 Max. It took me around 4s for loading model and 6-7s to interface one image.
+
+### More version and speed info will be coming out as I finish testing. 
+
 
 Meta Superintelligence Labs
 
